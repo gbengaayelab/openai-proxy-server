@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const fetch = require('node-fetch');
+// const fetch = require('node-fetch'); // Remove this line
 
 const app = express();
 app.use(cors());
@@ -11,6 +11,7 @@ app.post('/api/openai', async (req, res) => {
   const { messages, model } = req.body;
 
   try {
+    // Use the global fetch provided by Node 18
     const openAiRes = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
